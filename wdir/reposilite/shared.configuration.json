@@ -1,0 +1,124 @@
+{
+  "authentication": {
+    "ldap": {
+      "enabled": false,
+      "ssl": false,
+      "hostname": "ldap.domain.com",
+      "port": 389,
+      "baseDn": "dc=company,dc=com",
+      "searchUserDn": "cn=reposilite,ou=admins,dc=domain,dc=com",
+      "searchUserPassword": "reposilite-admin-secret",
+      "typeAttribute": "person",
+      "userAttribute": "cn",
+      "userFilter": "(&(objectClass=person)(ou=Maven Users))",
+      "userType": "PERSISTENT"
+    }
+  },
+  "frontend": {
+    "id": "reposilite-repository",
+    "title": "Reposilite Repository",
+    "description": "Public Maven repository hosted through the Reposilite",
+    "organizationWebsite": "https://reposilite.com",
+    "organizationLogo": "https://avatars.githubusercontent.com/u/88636591",
+    "icpLicense": ""
+  },
+  "statistics": {
+    "enabled": true,
+    "resolvedRequestsInterval": "MONTHLY"
+  },
+  "web": {
+    "forwardedIp": "X-Forwarded-For"
+  },
+  "maven": {
+    "repositories": [
+      {
+        "id": "releases",
+        "visibility": "PUBLIC",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "500MB",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": [
+          {
+            "reference": "https://repo.akka.io/maven",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://packages.confluent.io/maven/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          }
+        ]
+      },
+      {
+        "id": "snapshots",
+        "visibility": "PUBLIC",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "100%",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": []
+      },
+      {
+        "id": "private",
+        "visibility": "PRIVATE",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "100%",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": []
+      }
+    ]
+  }
+}

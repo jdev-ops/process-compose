@@ -1,0 +1,18 @@
+https://min.io/download?view=aistor-custom
+
+wget https://dl.min.io/aistor/minio/release/linux-amd64/minio
+chmod +x minio
+MINIO_ROOT_USER=admin MINIO_ROOT_PASSWORD=password ./minio server /mnt/data --console-address ":9001"
+
+wget https://dl.min.io/aistor/mincat/release/linux-amd64/mincat
+chmod +x mincat
+./mincat --help
+
+wget https://dl.min.io/aistor/minkms/release/linux-amd64/minkms
+chmod +x minkms
+./minkms --help
+
+wget https://dl.min.io/aistor/mc/release/linux-amd64/mc
+chmod +x mc
+mc alias set myminio/ http://MINIO-SERVER MYUSER MYPASSWORD
+

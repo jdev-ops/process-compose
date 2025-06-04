@@ -1,0 +1,15 @@
+version: "0.5"
+is_strict: true
+processes:
+  minio:
+    command: |
+      minio server ./data --console-address ":9001"
+    working_dir: "wdir/minio"
+  nats:
+    command: |
+      nats-server -config server.conf
+    working_dir: "wdir/nats"
+  redis:
+    command: |
+      valkey-server valkey.conf
+    working_dir: "wdir/redis"

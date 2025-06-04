@@ -1,0 +1,63 @@
+❯ VAULT_ADDR=http://127.0.0.1:8300 vault operator init -key-shares=1 -key-threshold=1
+Unseal Key 1: sDWlLKRMKv7g5Uer0pfS6iYLApO9v5z61YzAgcWtTlo=
+
+Initial Root Token: hvs.sDGECPJZw9YTbqJkZw39XX4h
+
+Vault initialized with 1 key shares and a key threshold of 1. Please securely
+distribute the key shares printed above. When the Vault is re-sealed,
+restarted, or stopped, you must supply at least 1 of these keys to unseal it
+before it can start servicing requests.
+
+Vault does not store the generated root key. Without at least 1 keys to
+reconstruct the root key, Vault will remain permanently sealed!
+
+It is possible to generate new unseal keys, provided you have a quorum of
+existing unseal keys shares. See "vault operator rekey" for more information.
+
+VAULT_ADDR=http://127.0.0.1:8300 vault login $INITIAL_ROOT_TOKEN
+VAULT_ADDR=http://127.0.0.1:8300 vault auth enable jwt
+VAULT_ADDR=http://127.0.0.1:8300 vault write auth/jwt/config jwt_supported_algs=RS256 jwt_validation_pubkeys=@public_key.pem
+VAULT_ADDR=http://127.0.0.1:8300 vault write auth/jwt/role/test-role policies="avatar" user_claim="sub" role_type="jwt" bound_audiences="test"
+vault write auth/jwt/login role=test-role jwt=$JWT_TOKEN
+
+VAULT_ADDR=http://127.0.0.1:8300 vault policy write avatars-policy avatars-policy.hcl
+VAULT_ADDR=http://127.0.0.1:8300 vault write sys/policy/avatars-policy policy=@avatars-policy.hcl
+
+❯ VAULT_ADDR=http://127.0.0.1:8300 vault token create -policy=avatars-policy
+Key                  Value
+---                  -----
+token                hvs.CAESIDLyTaZcl5sefmiozY-j3Z9_lFO3wwTz_5aXHDNqSAFnGh4KHGh2cy5BcmtxMzhicDZoWHNkZ1VqTUxNTlBTM3o
+token_accessor       5bw471pXUpse0PiJXDPdolE6
+token_duration       768h
+token_renewable      true
+token_policies       ["avatars-policy" "default"]
+identity_policies    []
+policies             ["avatars-policy" "default"]
+
+❯ VAULT_ADDR=http://127.0.0.1:8300 vault token create -policy=avatars-policy -metadata name=jalbert
+Key                  Value
+---                  -----
+token                hvs.CAESICpC334rrUwcFmFwe-5xy77uJIlPU6qAPo8-Klv0nKtvGh4KHGh2cy5qbDZQOFV2OWs0WFl1T2t2VVhhOTNhbTI
+token_accessor       DMUd61mFoI0NVoivnXSnxhQg
+token_duration       768h
+token_renewable      true
+token_policies       ["avatars-policy" "default"]
+identity_policies    []
+policies             ["avatars-policy" "default"]
+token_meta_name      jalbert
+
+
+https://developer.hashicorp.com/vault/tutorials/auth-methods/identity
+https://support.hashicorp.com/hc/en-us/articles/12406076771347-Vault-JWT-auth-with-static-keys
+https://developer.hashicorp.com/vault/docs/auth/jwt/oidc-providers/keycloak
+
+# keycloak
+KC_BOOTSTRAP_ADMIN_USERNAME=sa
+KC_BOOTSTRAP_ADMIN_PASSWORD=password
+https://stackoverflow.com/questions/63800413/invalid-username-password-when-accessing-keycloaks-h2-database
+https://github.com/keycloak/keycloak/blob/7f826399987700273416a1ac39c9beca98428c84/quarkus/runtime/src/test/java/org/keycloak/quarkus/runtime/configuration/test/ConfigurationTest.java#L245
+https://www.keycloak.org/server/configuration
+https://www.keycloak.org/server/importExport
+https://www.keycloak.org/getting-started/getting-started-zip
+-Dkc.home.dir='/home/z/appslnx/web/keycloak/bin/..' -Djboss.server.config.dir='/home/z/appslnx/web/keycloak/bin/../conf' -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Dpicocli.disable.closures=true -Dquarkus-log-max-startup-records=10000
+'/home/z/appslnx/web/keycloak/bin/../lib/quarkus-run.jar'
