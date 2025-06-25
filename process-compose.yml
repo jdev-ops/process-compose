@@ -6,6 +6,10 @@ processes:
     command: |
       java -jar $REPOSILITE_STANDALONE_JAR_PATH --token name:secret
     working_dir: "wdir/reposilite"
+  jaeger:
+    command: |
+      jaeger
+    working_dir: "wdir/jaeger"
 #  vault:
 #    command: |
 #      vault server -config config.hcl
@@ -15,16 +19,22 @@ processes:
 #      - "VAULT_ADDR=http://127.0.0.1:8300"
 #    command: "sleep 2 && vault operator unseal $UNSEAL_KEY"
 #    is_tty: true
-#  krakend:
-#    command: |
-#      krakend run --config krakend.json
-#    working_dir: "wdir/krakend"
-#  keycloak:
-#    environment:
-#      - "KC_DB_URL=jdbc:h2:file:./data/keycloakdb;NON_KEYWORDS=VALUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=0"
-#    command: |
-#      kc.sh start-dev
-#    working_dir: "wdir/keycloak"
+  krakend:
+    command: |
+      sleep 3 
+      krakend run --config krakend.json
+    working_dir: "wdir/krakend"
+  caddy:
+    command: |
+      caddy run
+    working_dir: "wdir/caddy"
+  keycloak:
+    environment:
+      - "KC_DB_URL=jdbc:h2:file:./data/keycloakdb;NON_KEYWORDS=VALUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=0"
+      - "KC_HTTP_PORT=8087"
+    command: |
+      kc.sh start-dev
+    working_dir: "wdir/keycloak"
 #  mongo:
 #    command: |
 #      mongod --dbpath data/db --auth

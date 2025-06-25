@@ -2,7 +2,7 @@
   "$schema": "https://www.krakend.io/schema/v2.5/krakend.json",
   "version": 3,
   "name": "My lovely gateway",
-  "port": 8080,
+  "port": 8070,
   "cache_ttl": "3600s",
   "timeout": "3s",
   "extra_config": {
@@ -47,8 +47,8 @@
       "extra_config": {
         "auth/signer": {
           "alg": "RS256",
-          "jwk_local_path": "./jwks-priv.json",
-          "kid": "id-1",
+          "jwk_url": "http://localhost:9000/store/jwks-priv.json",
+          "kid": "SA2hmEnGOyeTOjfR_qpJaG_hEINDnhnJCO51OguWCa8",
           "keys_to_sign": [
             "access_token"
           ],
