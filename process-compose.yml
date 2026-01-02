@@ -2,48 +2,43 @@ version: "0.5"
 is_strict: true
 environment:
 processes:
-  reposilite:
-    command: |
-      java -jar $REPOSILITE_STANDALONE_JAR_PATH --token name:secret
-    working_dir: "wdir/reposilite"
-  jaeger:
-    command: |
-      jaeger
-    working_dir: "wdir/jaeger"
-#  vault:
-#    command: |
-#      vault server -config config.hcl
-#    working_dir: "wdir/vault"
-#  unseal_vault:
-#    environment:
-#      - "VAULT_ADDR=http://127.0.0.1:8300"
-#    command: "sleep 2 && vault operator unseal $UNSEAL_KEY"
-#    is_tty: true
-  krakend:
-    command: |
-      sleep 3 
-      krakend run --config krakend.json
-    working_dir: "wdir/krakend"
-  caddy:
-    command: |
-      caddy run
-    working_dir: "wdir/caddy"
-  keycloak:
-    environment:
-      - "KC_DB_URL=jdbc:h2:file:./data/keycloakdb;NON_KEYWORDS=VALUE;DB_CLOSE_ON_EXIT=FALSE;DB_CLOSE_DELAY=0"
-      - "KC_HTTP_PORT=8087"
-    command: |
-      kc.sh start-dev
-    working_dir: "wdir/keycloak"
-#  mongo:
-#    command: |
-#      mongod --dbpath data/db --auth
-#    working_dir: "wdir/mongo"
-#  minio:
-#    command: |
-#      minio server ./data --console-address ":9001"
-#    working_dir: "wdir/minio"
-#  nats:
-#    command: |
-#      nats-server -config server.conf
-#    working_dir: "wdir/nats"
+ reposilite:
+   command: |
+     java -jar $REPOSILITE_STANDALONE_JAR_PATH --token name:secret --shared-configuration shared.configuration.json
+   working_dir: "wdir/reposilite"
+   namespace: base
+ caddy:
+   command: |
+     caddy run
+   working_dir: "wdir/caddy"
+ verdaccio:
+   command: |
+     verdaccio
+ jaeger-1:
+   command: jaeger --config config.yaml
+   working_dir: wdir/jaeger
+   environment:
+     - JAEGER_METRICS_READERS_EXPORTER_PROMETHEUS_PORT=10000
+     - JAEGER_QUERY_HTTP_HOST_PORT=10001
+     - JAEGER_QUERY_GRPC_HOST_PORT=10002
+     - JAEGER_REMOTE_SAMPLING_HTTP_PORT=10003
+     - JAEGER_REMOTE_SAMPLING_GRPC_PORT=10004
+     - JAEGER_RECEIVERS_OTLP_GRPC_PORT=10005
+     - JAEGER_RECEIVERS_OTLP_HTTP_PORT=10006
+     - JAEGER_RECEIVERS_JAEGER_PROTOCOLS_GRPC_PORT=10007
+     - JAEGER_RECEIVERS_JAEGER_PROTOCOLS_THRIFT_HTTP_PORT=10008
+     - JAEGER_RECEIVERS_JAEGER_PROTOCOLS_THRIFT_BINARY_PORT=10009
+     - JAEGER_RECEIVERS_JAEGER_PROTOCOLS_THRIFT_COMPACT_PORT=10010
+     - JAEGER_RECEIVERS_ZIPKIN_PORT=10011
+ gitea:
+   command: |
+     gitea --work-path /media/z/data/repo/apps/gitea web
+   working_dir: "wdir/gitea"
+  # vault-server:
+  #   command: |
+  #     VAULT_ADDR=http://127.0.0.1:8300 vault server -config=config.hcl
+  #   working_dir: "wdir/vault"
+  # vault-unseal:
+  #   command: |
+  #     sleep 5 && VAULT_ADDR=http://127.0.0.1:8300 vault operator unseal "$VAULT_UNSEAL_KEY"
+  #   working_dir: "wdir/vault"

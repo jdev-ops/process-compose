@@ -1,1 +1,433 @@
-{"authentication":{"ldap":{"enabled":false,"ssl":false,"hostname":"ldap.domain.com","port":389,"baseDn":"dc=company,dc=com","searchUserDn":"cn=reposilite,ou=admins,dc=domain,dc=com","searchUserPassword":"reposilite-admin-secret","typeAttribute":"person","userAttribute":"cn","userFilter":"(&(objectClass=person)(ou=Maven Users))","userType":"PERSISTENT"}},"web":{"forwardedIp":"X-Forwarded-For"},"statistics":{"enabled":true,"resolvedRequestsInterval":"MONTHLY"},"frontend":{"id":"reposilite-repository","title":"Reposilite Repository","description":"Public Maven repository hosted through the Reposilite","organizationWebsite":"https://reposilite.com","organizationLogo":"https://avatars.githubusercontent.com/u/88636591","icpLicense":""},"maven":{"repositories":[{"id":"releases","visibility":"PUBLIC","redeployment":false,"preserveSnapshots":false,"storageProvider":{"type":"fs","quota":"500MB","mount":"","maxResourceLockLifetimeInSeconds":60},"storagePolicy":"PRIORITIZE_UPSTREAM_METADATA","metadataMaxAge":0,"proxied":[{"reference":"https://repo.akka.io/maven","store":true,"allowedGroups":[],"allowedExtensions":[".jar",".war",".pom",".xml",".module",".md5",".sha1",".sha256",".sha512",".asc"],"connectTimeout":3,"readTimeout":15,"httpProxy":"","authenticatedFetchingOnly":false},{"reference":"https://packages.confluent.io/maven/","store":true,"allowedGroups":[],"allowedExtensions":[".jar",".war",".pom",".xml",".module",".md5",".sha1",".sha256",".sha512",".asc"],"connectTimeout":3,"readTimeout":15,"httpProxy":"","authenticatedFetchingOnly":false},{"reference":"https://repo1.maven.org/maven2/","store":true},{"reference":"https://maven.java.net/content/repositories/public/","store":true},{"reference":"https://oss.sonatype.org/content/repositories/public","store":true},{"reference":"https://s01.oss.sonatype.org/content/repositories","store":true},{"reference":"https://repo.typesafe.com/typesafe/releases","store":true},{"reference":"https://repo.typesafe.com/typesafe/ivy-releases","store":true},{"reference":"https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases","store":true},{"reference":"https://jcenter.bintray.com/","store":true}]},{"id":"snapshots","visibility":"PUBLIC","redeployment":false,"preserveSnapshots":false,"storageProvider":{"type":"fs","quota":"100%","mount":"","maxResourceLockLifetimeInSeconds":60},"storagePolicy":"PRIORITIZE_UPSTREAM_METADATA","metadataMaxAge":0,"proxied":[]},{"id":"private","visibility":"PRIVATE","redeployment":false,"preserveSnapshots":false,"storageProvider":{"type":"fs","quota":"100%","mount":"","maxResourceLockLifetimeInSeconds":60},"storagePolicy":"PRIORITIZE_UPSTREAM_METADATA","metadataMaxAge":0,"proxied":[]}]}}
+{
+  "authentication": {
+    "ldap": {
+      "enabled": false,
+      "ssl": false,
+      "hostname": "ldap.domain.com",
+      "port": 389,
+      "baseDn": "dc=company,dc=com",
+      "searchUserDn": "cn=reposilite,ou=admins,dc=domain,dc=com",
+      "searchUserPassword": "reposilite-admin-secret",
+      "typeAttribute": "person",
+      "userAttribute": "cn",
+      "userFilter": "(&(objectClass=person)(ou=Maven Users))",
+      "userType": "PERSISTENT"
+    }
+  },
+  "frontend": {
+    "id": "reposilite-repository",
+    "title": "Reposilite Repository",
+    "description": "Public Maven repository hosted through the Reposilite",
+    "organizationWebsite": "https://reposilite.com",
+    "organizationLogo": "https://avatars.githubusercontent.com/u/88636591",
+    "icpLicense": ""
+  },
+  "maven": {
+    "repositories": [
+      {
+        "id": "releases",
+        "visibility": "PUBLIC",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "10GB",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": [
+          {
+            "reference": "https://repo.akka.io/maven",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://packages.confluent.io/maven/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo1.maven.org/maven2/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe",
+              ".tar"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://maven.java.net/content/repositories/public/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://oss.sonatype.org/content/repositories/public",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://s01.oss.sonatype.org/content/repositories",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.typesafe.com/typesafe/releases",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.typesafe.com/typesafe/ivy-releases",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://jcenter.bintray.com/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repository.jboss.org/nexus/content/repositories/public/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://oss.sonatype.org/service/local/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.jfrog.org/artifactory/api/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repository.jboss.org/nexus/service/local/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.clojars.org",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://nexus.redplanetlabs.com/repository/maven-public-releases/",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          }
+        ]
+      },
+      {
+        "id": "snapshots",
+        "visibility": "PUBLIC",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "100%",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": []
+      },
+      {
+        "id": "private",
+        "visibility": "PRIVATE",
+        "redeployment": false,
+        "preserveSnapshots": false,
+        "storageProvider": {
+          "type": "fs",
+          "quota": "100%",
+          "mount": "",
+          "maxResourceLockLifetimeInSeconds": 60
+        },
+        "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
+        "metadataMaxAge": 0,
+        "proxied": []
+      }
+    ]
+  },
+  "statistics": {
+    "enabled": true,
+    "resolvedRequestsInterval": "MONTHLY"
+  },
+  "web": {
+    "forwardedIp": "X-Forwarded-For"
+  }
+}

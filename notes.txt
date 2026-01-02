@@ -61,3 +61,8 @@ https://www.keycloak.org/server/importExport
 https://www.keycloak.org/getting-started/getting-started-zip
 -Dkc.home.dir='/home/z/appslnx/web/keycloak/bin/..' -Djboss.server.config.dir='/home/z/appslnx/web/keycloak/bin/../conf' -Djava.util.logging.manager=org.jboss.logmanager.LogManager -Dpicocli.disable.closures=true -Dquarkus-log-max-startup-records=10000
 '/home/z/appslnx/web/keycloak/bin/../lib/quarkus-run.jar'
+
+
+   --custom-path value, -C value  Set custom path (defaults to '{WorkPath}/custom')
+   --config value, -c value       Set custom config file (defaults to '{WorkPath}/custom/conf/app.ini')
+   --work-path value, -w value    Set Gitea's working path (defaults to the Gitea's binary directory)
