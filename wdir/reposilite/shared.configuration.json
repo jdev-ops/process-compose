@@ -31,7 +31,7 @@
         "preserveSnapshots": false,
         "storageProvider": {
           "type": "fs",
-          "quota": "10GB",
+          "quota": "100%",
           "mount": "",
           "maxResourceLockLifetimeInSeconds": 60
         },
@@ -96,9 +96,7 @@
               ".sha1",
               ".sha256",
               ".sha512",
-              ".asc",
-              ".exe",
-              ".tar"
+              ".asc"
             ],
             "connectTimeout": 3,
             "readTimeout": 15,
@@ -369,6 +367,27 @@
             "authenticatedFetchingOnly": false
           },
           {
+            "reference": "https://jitpack.io",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
             "reference": "https://nexus.redplanetlabs.com/repository/maven-public-releases/",
             "store": true,
             "allowedGroups": [],
@@ -425,7 +444,7 @@
   },
   "statistics": {
     "enabled": true,
-    "resolvedRequestsInterval": "MONTHLY"
+    "resolvedRequestsInterval": "YEARLY"
   },
   "web": {
     "forwardedIp": "X-Forwarded-For"
