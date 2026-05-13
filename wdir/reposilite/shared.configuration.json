@@ -192,50 +192,6 @@
             "authenticatedFetchingOnly": false
           },
           {
-            "reference": "https://repo.typesafe.com/typesafe/ivy-releases",
-            "store": true,
-            "allowedGroups": [],
-            "allowedExtensions": [
-              ".jar",
-              ".war",
-              ".pom",
-              ".xml",
-              ".module",
-              ".md5",
-              ".sha1",
-              ".sha256",
-              ".sha512",
-              ".asc",
-              ".exe"
-            ],
-            "connectTimeout": 3,
-            "readTimeout": 15,
-            "httpProxy": "",
-            "authenticatedFetchingOnly": false
-          },
-          {
-            "reference": "https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases",
-            "store": true,
-            "allowedGroups": [],
-            "allowedExtensions": [
-              ".jar",
-              ".war",
-              ".pom",
-              ".xml",
-              ".module",
-              ".md5",
-              ".sha1",
-              ".sha256",
-              ".sha512",
-              ".asc",
-              ".exe"
-            ],
-            "connectTimeout": 3,
-            "readTimeout": 15,
-            "httpProxy": "",
-            "authenticatedFetchingOnly": false
-          },
-          {
             "reference": "https://jcenter.bintray.com/",
             "store": true,
             "allowedGroups": [],
@@ -426,8 +382,8 @@
         "proxied": []
       },
       {
-        "id": "private",
-        "visibility": "PRIVATE",
+        "id": "ivy-releases",
+        "visibility": "PUBLIC",
         "redeployment": false,
         "preserveSnapshots": false,
         "storageProvider": {
@@ -438,7 +394,52 @@
         },
         "storagePolicy": "PRIORITIZE_UPSTREAM_METADATA",
         "metadataMaxAge": 0,
-        "proxied": []
+        "proxied": [
+          {
+            "reference": "https://repo.typesafe.com/typesafe/ivy-releases",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          },
+          {
+            "reference": "https://repo.scala-sbt.org/scalasbt/sbt-plugin-releases",
+            "store": true,
+            "allowedGroups": [],
+            "allowedExtensions": [
+              ".jar",
+              ".war",
+              ".pom",
+              ".xml",
+              ".module",
+              ".md5",
+              ".sha1",
+              ".sha256",
+              ".sha512",
+              ".asc",
+              ".exe"
+            ],
+            "connectTimeout": 3,
+            "readTimeout": 15,
+            "httpProxy": "",
+            "authenticatedFetchingOnly": false
+          }
+        ]
       }
     ]
   },

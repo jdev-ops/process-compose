@@ -7,6 +7,10 @@ processes:
      java -jar $REPOSILITE_STANDALONE_JAR_PATH --token name:secret --shared-configuration shared.configuration.json
    working_dir: "wdir/reposilite"
    namespace: base
+ devpi:
+   command: |
+     .venv/bin/devpi-server
+   working_dir: "/home/z/appslnx/tools/python"
  caddy:
    command: |
      caddy run
